@@ -27,9 +27,11 @@ const Table = ({ data }) => {
 
 const Row = ({ dataType, rowData }) => {
   function copyToClipboard(text) {
+    const dataArr = Object.keys(rowData).map((key) => rowData[key]);
+    const dataStr = dataArr.join(", ");
     const dummy = document.createElement("textarea");
     document.body.appendChild(dummy);
-    dummy.value = JSON.stringify(rowData);
+    dummy.value = dataStr;
     dummy.select();
     document.execCommand("copy");
     document.body.removeChild(dummy);
