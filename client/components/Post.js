@@ -31,6 +31,10 @@ const Post = ({ scrapePDF }) => {
   );
 };
 
+Post.propTypes = {
+  scrapePDF: PropTypes.func.isRequired,
+};
+
 const InputURL = ({ value, setValue, placeholder }) => {
   return (
     <div className="field">

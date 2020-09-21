@@ -33,8 +33,8 @@ const Main = () => {
         <div className="column is-8 is-offset-2">
           <h1 className="title is-1">Covid PDF Scraper</h1>
           <h2 className="subtitle colored is-4">
-            Scrapes a given PDF on the website of the Pa. Department of Health,
-            converts it to text.
+            Scrapes PDFs on Pa. Department of Health website and converts them
+            to text.
           </h2>
         </div>
         <div className="column is-8 is-offset-2">
