@@ -1,0 +1,10 @@
+node_modules/
+.env.test
+.env.development
+colors.md
+.cache
+venv/
+__pycache__
+.pytest_cache
+.tmp
+node_modules
