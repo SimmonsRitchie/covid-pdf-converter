@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-const Post = ({ scrapePDF }) => {
+const Inputs = ({ scrapePDF }) => {
   const fiona =
     "https://www.health.pa.gov/topics/Documents/Diseases%20and%20Conditions/COVID-19%20County%20Data/County%20Case%20Counts_9_19_2020.pdf";
   const apple =
@@ -31,7 +31,7 @@ const Post = ({ scrapePDF }) => {
   );
 };
 
-Post.propTypes = {
+Inputs.propTypes = {
   scrapePDF: PropTypes.func.isRequired,
 };
 
@@ -63,4 +63,4 @@ InputURL.propTypes = {
   placeholder: PropTypes.string.isRequired,
 };
 
-export default Post;
+export default Inputs;

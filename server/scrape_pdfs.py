@@ -56,4 +56,4 @@ def scrape_pdfs(cases_url, deaths_url):
     df.set_index("County", inplace=True)
     df = df.transpose()
     df["Total"] = df.sum(axis=1)
-    return df.to_dict("records")
+    return df.to_dict("index")

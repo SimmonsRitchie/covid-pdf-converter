@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Post from "./Post";
+import Inputs from "./Inputs";
+import Table from "./Table";
 
 const Main = () => {
   const [output, setOutput] = useState("");
@@ -38,11 +39,11 @@ const Main = () => {
           </h2>
         </div>
         <div className="column is-8 is-offset-2">
-          <Post scrapePDF={scrapePDF} />
+          <Inputs scrapePDF={scrapePDF} />
         </div>
         <div className="column is-8 is-offset-2">
           {loading && <div>Loading...</div>}
-          {output && <div>{JSON.stringify(output)}</div>}
+          {output && <Table data={output} />}
         </div>
       </div>
     </section>
