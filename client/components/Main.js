@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Inputs from "./Inputs";
 import Table from "./Table";
+import Header from "./Header";
 
 const Main = () => {
   const [output, setOutput] = useState("");
@@ -28,25 +29,23 @@ const Main = () => {
       });
   };
 
+  const clearOutput = () => {
+    setOutput("");
+  };
+
   return (
-    <section className="container">
-      <div className="columns is-multiline">
-        <div className="column is-8 is-offset-2">
-          <h1 className="title is-1">Covid PDF Converter</h1>
-          <h2 className="subtitle colored is-4">
-            Downloads PDFs on Pa. Department of Health website and converts them
-            to text.
-          </h2>
+    <div>
+      <Header />
+      <Inputs scrapePDF={scrapePDF} clearOutput={clearOutput} />
+      <section className="section">
+        <div className="columns">
+          <div className="column is-8 is-offset-2">
+            {loading && <div>Loading...</div>}
+            {output && <Table data={output} />}
+          </div>
         </div>
-        <div className="column is-8 is-offset-2">
-          <Inputs scrapePDF={scrapePDF} />
-        </div>
-        <div className="column is-8 is-offset-2">
-          {loading && <div>Loading...</div>}
-          {output && <Table data={output} />}
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 

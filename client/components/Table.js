@@ -11,7 +11,7 @@ const Table = ({ data }) => {
             <td />
             <td>Data</td>
             {Object.keys(firstRow).map((key) => (
-              <td>{key}</td>
+              <td key={key}>{key}</td>
             ))}
           </tr>
         </thead>
