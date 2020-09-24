@@ -1,24 +1,34 @@
-import React from "react";
-import Spinner from "react-spinkit";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Table from "./Table";
+import Loader from "./Loader";
+import Tabs from "./Tabs";
 
 const Output = ({ loading, output, error }) => {
+  const tabSchema = [
+    { id: "table", label: "Table" },
+    { id: "text", label: "Text" },
+  ];
+  const [currentTab, setCurrentTab] = useState("table");
+  const handleTabClick = (val) => {
+    setCurrentTab(val);
+  };
+
+  // TODO: Add enum so that display switches between table and text components
+
   return (
     <section className="section">
       <div className="columns">
         <div className="column is-8 is-offset-2">
-          {loading && (
-            <div className="level">
-              <div className="level-item">
-                <Spinner name="ball-scale-ripple" color="#ED3B5F" />
-              </div>
-            </div>
-          )}
+          {loading && <Loader />}
           {error && (
             <div className="notification is-danger is-light">{error}</div>
           )}
-          {output && <Table data={output} />}
+          <Tabs
+            tabSchema={tabSchema}
+            currentTab={currentTab}
+            handleTabClick={handleTabClick}
+          />
         </div>
       </div>
     </section>
@@ -37,3 +47,5 @@ Output.propTypes = {
 };
 
 export default Output;
+
+// {output && <Table data={output} />}

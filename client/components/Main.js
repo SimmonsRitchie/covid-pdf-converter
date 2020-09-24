@@ -29,7 +29,6 @@ const Main = () => {
       })
       .then((data) => {
         setLoading(false);
-        console.log(data.data);
         setOutput(data.data);
       })
       .catch((err) => {

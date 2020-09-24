@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from "react";
+import PropTypes from "prop-types";
 
 const Table = ({ data }) => {
   const firstRow = data[Object.keys(data)[0]];
@@ -25,8 +26,12 @@ const Table = ({ data }) => {
   );
 };
 
+Table.propTypes = {
+  data: PropTypes.objectOf(PropTypes.any).isRequired,
+};
+
 const Row = ({ dataType, rowData }) => {
-  function copyToClipboard(text) {
+  copyToClipboard = () => {
     const dataArr = Object.keys(rowData).map((key) => rowData[key]);
     const dataStr = dataArr.join(", ");
     const dummy = document.createElement("textarea");
@@ -35,7 +40,7 @@ const Row = ({ dataType, rowData }) => {
     dummy.select();
     document.execCommand("copy");
     document.body.removeChild(dummy);
-  }
+  };
 
   return (
     <tr>
@@ -50,6 +55,15 @@ const Row = ({ dataType, rowData }) => {
       ))}
     </tr>
   );
+};
+
+Row.defaultProps = {
+  dataType: "",
+};
+
+Row.propTypes = {
+  dataType: PropTypes.string,
+  rowData: PropTypes.objectOf(PropTypes.Any).isRequired,
 };
 
 export default Table;
