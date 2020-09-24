@@ -20,7 +20,8 @@ def scrape():
     args = request.get_json()
     cases_url = args["casesURL"]
     deaths_url = args["deathsURL"]
-    print(cases_url)
-    print(deaths_url)
-    data = scrape_pdfs(cases_url, deaths_url)
-    return {"data": data}
+    try:
+        data = scrape_pdfs(cases_url, deaths_url)
+        return {"data": data}, 200
+    except Exception as e:
+        return str(e), 500

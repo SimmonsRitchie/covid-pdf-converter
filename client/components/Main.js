@@ -1,50 +1,54 @@
 import React, { useState } from "react";
 import Inputs from "./Inputs";
-import Table from "./Table";
 import Header from "./Header";
+import Output from "./Output";
 
 const Main = () => {
-  const [output, setOutput] = useState("");
+  const [output, setOutput] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const scrapePDF = (casesURL, deathsURL) => {
+    setError("");
     setLoading(true);
-    setOutput("");
+    setOutput(null);
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ casesURL, deathsURL }),
     };
     fetch("/scrape", requestOptions)
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status !== 200) {
+          console.log(
+            `Looks like there was a problem. Status Code: ${res.status}`
+          );
+        } else {
+          return res.json();
+        }
+      })
       .then((data) => {
         setLoading(false);
-        console.log(data);
+        console.log(data.data);
         setOutput(data.data);
       })
       .catch((err) => {
         setLoading(false);
-        console.log("Something went wrong!");
-        console.log(err);
+        console.log(err.message);
+        setError("Uh oh, something went wrong! Did you use a bad URL?");
       });
   };
 
   const clearOutput = () => {
-    setOutput("");
+    setOutput(null);
+    setError("");
   };
 
   return (
     <div>
       <Header />
       <Inputs scrapePDF={scrapePDF} clearOutput={clearOutput} />
-      <section className="section">
-        <div className="columns">
-          <div className="column is-8 is-offset-2">
-            {loading && <div>Loading...</div>}
-            {output && <Table data={output} />}
-          </div>
-        </div>
-      </section>
+      <Output loading={loading} output={output} error={error} />
     </div>
   );
 };
