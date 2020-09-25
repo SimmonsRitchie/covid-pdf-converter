@@ -1,20 +1,33 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Table from "./Table";
+import OutputTable from "./OutputTable";
 import Loader from "./Loader";
 import Tabs from "./Tabs";
+import OutputText from "./OutputText";
 
 const Output = ({ loading, output, error }) => {
   const tabSchema = [
     { id: "table", label: "Table" },
     { id: "text", label: "Text" },
   ];
-  const [currentTab, setCurrentTab] = useState("table");
+  const [currentTab, setCurrentTab] = useState("text");
   const handleTabClick = (val) => {
     setCurrentTab(val);
   };
+  let firstRow;
+  let restOfRows;
+  if (output) {
+    firstRow = output[Object.keys(output)[0]];
+    firstRow = ["data", ...Object.keys(firstRow)];
+    restOfRows = Object.keys(output).map((key) => {
+      return [key, ...Object.values(output[key])];
+    });
+  }
 
-  // TODO: Add enum so that display switches between table and text components
+  const displayEnum = {
+    table: <OutputTable firstRow={firstRow} restOfRows={restOfRows} />,
+    text: <OutputText firstRow={firstRow} restOfRows={restOfRows} />,
+  };
 
   return (
     <section className="section">
@@ -24,11 +37,16 @@ const Output = ({ loading, output, error }) => {
           {error && (
             <div className="notification is-danger is-light">{error}</div>
           )}
-          <Tabs
-            tabSchema={tabSchema}
-            currentTab={currentTab}
-            handleTabClick={handleTabClick}
-          />
+          {output && (
+            <div>
+              <Tabs
+                tabSchema={tabSchema}
+                currentTab={currentTab}
+                handleTabClick={handleTabClick}
+              />
+              {displayEnum[currentTab]}
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -48,4 +66,4 @@ Output.propTypes = {
 
 export default Output;
 
-// {output && <Table data={output} />}
+//

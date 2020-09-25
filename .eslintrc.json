@@ -10,5 +10,9 @@
     "react/state-in-constructor": "off",
     "react/jsx-fragments": "off",
     "react/destructuring-assignment": "off"
+  },
+  "env": {
+      "browser": true,
+      "node": true
   }
 }
