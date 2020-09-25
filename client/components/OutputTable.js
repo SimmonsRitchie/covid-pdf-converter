@@ -49,6 +49,7 @@ const Row = ({ colNames, rowData }) => {
       <td>
         <button
           type="button"
+          className="button is-small"
           onClick={() => {
             const dataArr = Object.keys(rowData).map((key) => rowData[key]);
             const dataStr = dataArr.join(", ");

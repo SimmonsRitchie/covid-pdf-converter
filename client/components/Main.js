@@ -45,7 +45,10 @@ const Main = () => {
 
   return (
     <div>
-      <Header />
+      <Header
+        title="COVID PDF Converter"
+        subtitle="Convert PDFs from DoH to Text"
+      />
       <Inputs scrapePDF={scrapePDF} clearOutput={clearOutput} />
       <Output loading={loading} output={output} error={error} />
     </div>
