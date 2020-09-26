@@ -1,24 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
-import copyToClipboard from "../utils/copyToClipboard";
 
-const OutputText = ({ firstRow, restOfRows }) => {
-  const firstRowStr = firstRow.join(",");
+const OutputText = ({ firstRowStr, restOfRowsArrOfStrs, copyAllText }) => {
   const firstRowJsx = <p>{firstRowStr}</p>;
-  const restOfRowsArrOfStrs = restOfRows.map((row) => {
-    return row.join(",");
-  });
-
-  const test = () => {
-    const fullText = `${firstRowStr}\n${restOfRowsArrOfStrs.join("\n")}`;
-    copyToClipboard(fullText);
-  };
 
   return (
     <div>
-      <button type="button" className="button is-small" onClick={test}>
-        COPY ALL
-      </button>
+      <div className="level">
+        <div className="level-left">
+          <div className="level-item">
+            <button
+              type="button"
+              className="button is-small"
+              onClick={copyAllText}
+            >
+              COPY ALL
+            </button>
+          </div>
+        </div>
+        <div className="level-right" />
+      </div>
       <div style={{ width: "100%", overflow: "auto" }}>
         <pre>
           {firstRowJsx}
@@ -32,12 +33,13 @@ const OutputText = ({ firstRow, restOfRows }) => {
 };
 
 OutputText.defaultProps = {
-  firstRow: null,
-  restOfRows: null,
+  firstRowStr: null,
+  restOfRowsArrOfStrs: null,
 };
 
 OutputText.propTypes = {
-  firstRow: PropTypes.arrayOf(PropTypes.string),
-  restOfRows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.any)),
+  firstRowStr: PropTypes.string,
+  restOfRowsArrOfStrs: PropTypes.arrayOf(PropTypes.string),
+  copyAllText: PropTypes.func.isRequired,
 };
 export default OutputText;

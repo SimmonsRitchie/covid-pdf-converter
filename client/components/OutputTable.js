@@ -3,13 +3,21 @@ import React from "react";
 import PropTypes from "prop-types";
 import copyToClipboard from "../utils/copyToClipboard";
 
-const OutputTable = ({ firstRow, restOfRows }) => {
+const OutputTable = ({ firstRow, restOfRows, copyAllText }) => {
   return (
     <div className="table-container">
       <table className="table is-bordered">
         <thead>
           <tr>
-            <td />
+            <td>
+              <button
+                type="button"
+                className="button is-small"
+                onClick={copyAllText}
+              >
+                COPY ALL
+              </button>
+            </td>
             {firstRow.map((value, idx) => (
               <td key={`${idx}-${value}`}>{value}</td>
             ))}
@@ -40,6 +48,7 @@ OutputTable.defaultProps = {
 OutputTable.propTypes = {
   firstRow: PropTypes.arrayOf(PropTypes.string),
   restOfRows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.any)),
+  copyAllText: PropTypes.func.isRequired,
 };
 
 const Row = ({ colNames, rowData }) => {
@@ -56,7 +65,7 @@ const Row = ({ colNames, rowData }) => {
             copyToClipboard(dataStr);
           }}
         >
-          COPY
+          COPY ROW
         </button>
       </td>
       {rowData.map((value, idx) => {

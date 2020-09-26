@@ -6,25 +6,49 @@ import Tabs from "./Tabs";
 import OutputText from "./OutputText";
 import Section from "./Section";
 import { TAB_SCHEMA } from "../utils/constants";
+import copyToClipboard from "../utils/copyToClipboard";
 
 const Output = ({ loading, output, error }) => {
-  const [currentTab, setCurrentTab] = useState("text");
+  const [currentTab, setCurrentTab] = useState("table");
   const handleTabClick = (val) => {
     setCurrentTab(val);
   };
   let firstRow;
   let restOfRows;
+  let firstRowStr;
+  let restOfRowsArrOfStrs;
   if (output) {
     firstRow = output[Object.keys(output)[0]];
     firstRow = ["data", ...Object.keys(firstRow)];
     restOfRows = Object.keys(output).map((key) => {
       return [key, ...Object.values(output[key])];
     });
+    firstRowStr = firstRow.join(",");
+    restOfRowsArrOfStrs = restOfRows.map((row) => {
+      return row.join(",");
+    });
   }
 
-  const displayEnum = {
-    table: <OutputTable firstRow={firstRow} restOfRows={restOfRows} />,
-    text: <OutputText firstRow={firstRow} restOfRows={restOfRows} />,
+  const copyAllText = () => {
+    const fullText = `${firstRowStr}\n${restOfRowsArrOfStrs.join("\n")}`;
+    copyToClipboard(fullText);
+  };
+
+  const OUTPUT_DISPLAY = {
+    table: (
+      <OutputTable
+        firstRow={firstRow}
+        restOfRows={restOfRows}
+        copyAllText={copyAllText}
+      />
+    ),
+    text: (
+      <OutputText
+        firstRowStr={firstRowStr}
+        restOfRowsArrOfStrs={restOfRowsArrOfStrs}
+        copyAllText={copyAllText}
+      />
+    ),
   };
 
   return (
@@ -47,7 +71,7 @@ const Output = ({ loading, output, error }) => {
             currentTab={currentTab}
             handleTabClick={handleTabClick}
           />
-          {displayEnum[currentTab]}
+          {OUTPUT_DISPLAY[currentTab]}
         </div>
       )}
     </Section>

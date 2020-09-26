@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import StepTwo from "./StepTwo";
 import StepOne from "./StepOne";
-import Header from "./Header";
 import Output from "./Output";
-import Footer from "./Footer";
-import { CREDIT_LINE, HELP_TEXT } from "../utils/constants";
 
 const Main = () => {
   const [output, setOutput] = useState(null);
