@@ -1,6 +1,6 @@
 from flask import Flask, request
 import os
-from .scrape_pdfs import scrape_pdfs
+from .scrape import scrape_pdfs
 
 # Get and set directory for static files (ie. index.html, css, and bundled JS)
 # defaults to 'dist', the default name of Parcel's build directory

@@ -40,6 +40,8 @@ def scrape_pdfs(cases_url, deaths_url):
             "Rate2": "Rate",
         }
     )
+    print(df_deaths)
+    df_deaths["Deaths"] = df_deaths["Deaths"].str.replace(",", "")
     df_deaths["Deaths"] = pd.to_numeric(df_deaths["Deaths"])
     df_deaths["County Population"] = df_deaths["County Population"].str.replace(",", "")
     df_deaths["County Population"] = pd.to_numeric(df_deaths["County Population"])
