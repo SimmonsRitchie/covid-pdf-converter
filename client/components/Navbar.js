@@ -9,7 +9,7 @@ const Navbar = () => {
       <div className="container">
         <div className="navbar-brand">
           <a className="navbar-item brand-text" href="../index.html">
-            Bulma Admin
+            CPC
           </a>
           <div
             onClick={() => setBurgerOpen(!burgerOpen)}

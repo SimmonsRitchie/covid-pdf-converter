@@ -14,7 +14,7 @@ const Header = ({ title, subtitle }) => {
         <div className="columns">
           <div className="column is-8 is-offset-2">
             <h1 className="title is-1 grey-dark">{title}</h1>
-            <h2 className="subtitle colored is-4">{subtitle}</h2>
+            {subtitle && <h2 className="subtitle colored is-4">{subtitle}</h2>}
           </div>
         </div>
       </div>
@@ -22,9 +22,11 @@ const Header = ({ title, subtitle }) => {
   );
 };
 
+Header.defaultProps = { subtitle: "" };
+
 Header.propTypes = {
   title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
 };
 
 export default Header;

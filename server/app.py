@@ -24,4 +24,5 @@ def scrape():
         data = scrape_pdfs(cases_url, deaths_url)
         return {"data": data}, 200
     except Exception as e:
+        print(e)
         return str(e), 500

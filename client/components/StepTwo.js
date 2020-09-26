@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import NumberItem from "./NumberItem";
 
 const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
 
-const Inputs = ({ scrapePDF, clearOutput }) => {
+const StepTwo = ({ scrapePDF, clearOutput }) => {
   const [casesURL, setCasesURL] = useState("");
   const [casesValid, setCasesValid] = useState(false);
   const [deathsURL, setDeathsURL] = useState("");
@@ -33,16 +34,20 @@ const Inputs = ({ scrapePDF, clearOutput }) => {
 
   const setDemoData = () => {
     setAndValidateCasesUrl(
-      "https://www.health.pa.gov/topics/Documents/Diseases%20and%20Conditions/COVID-19%20County%20Data/County%20Case%20Counts_9_19_2020.pdf"
+      "https://interactives.data.spotlightpa.org/assets/covid-pdf-converter/sample/sample__county-cases__2020-09-19.pdf"
     );
     setAndValidateDeathsUrl(
-      "https://www.health.pa.gov/topics/Documents/Diseases%20and%20Conditions/COVID-19%20Death%20Data/County%20Death%20Counts_9_19_2020.pdf"
+      "https://interactives.data.spotlightpa.org/assets/covid-pdf-converter/sample/sample__county-deaths__2020-09-19.pdf"
     );
   };
 
   const submitUrls = () => {
     if (!casesValid || !deathsValid) {
       setErrorMsg("Please enter valid URLS");
+    } else if (casesURL === deathsURL) {
+      setErrorMsg(
+        "Cases and deaths URLs are the same. Did you accidentally copy the same URL twice?"
+      );
     } else {
       setErrorMsg("");
       scrapePDF(casesURL, deathsURL);
@@ -56,74 +61,62 @@ const Inputs = ({ scrapePDF, clearOutput }) => {
   };
 
   return (
-    <section className="section">
-      <div className="columns">
-        <div className="column is-8 is-offset-2">
-          <div className="level is-mobile">
-            <div className="level-left">
-              <div className="left-item">
-                <h2 className="title is-6">URLs</h2>
-              </div>
-            </div>
-            <div className="level-right">
-              <div className="level-item">
-                <div className="buttons">
-                  <button
-                    type="button"
-                    onClick={setDemoData}
-                    className="button is-small is-danger"
-                  >
-                    Demo
-                  </button>
-                  <button
-                    type="button"
-                    onClick={clearAllData}
-                    className="button is-small is-primary"
-                  >
-                    Clear
-                  </button>
-                </div>
-              </div>
+    <NumberItem number={2}>
+      <div className="content">Enter URLs</div>
+      <div className="level is-mobile">
+        <div className="level-left" />
+        <div className="level-right">
+          <div className="level-item">
+            <div className="buttons">
+              <button
+                type="button"
+                onClick={setDemoData}
+                className="button is-small is-danger"
+              >
+                Demo
+              </button>
+              <button
+                type="button"
+                onClick={clearAllData}
+                className="button is-small is-primary"
+              >
+                Clear
+              </button>
             </div>
           </div>
-          <InputURL
-            value={casesURL}
-            setValue={setAndValidateCasesUrl}
-            validValue={casesValid}
-            placeholder="Cases"
-          />
-          <InputURL
-            value={deathsURL}
-            setValue={setAndValidateDeathsUrl}
-            validValue={deathsValid}
-            placeholder="Deaths"
-          />
-          <div className="level">
-            <div className="level-left">
-              <div className="level-item">
-                <button
-                  type="button"
-                  className="button is-info"
-                  onClick={submitUrls}
-                >
-                  Scrape
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {errorMsg && (
-            <div className="notification is-danger is-light">{errorMsg}</div>
-          )}
         </div>
       </div>
-    </section>
-  );
-};
+      <InputURL
+        value={casesURL}
+        setValue={setAndValidateCasesUrl}
+        validValue={casesValid}
+        placeholder="Cases"
+      />
+      <InputURL
+        value={deathsURL}
+        setValue={setAndValidateDeathsUrl}
+        validValue={deathsValid}
+        placeholder="Deaths"
+      />
+      <div className="level">
+        <div className="level-left">
+          <div className="level-item">
+            <button
+              type="button"
+              className="button is-info"
+              onClick={submitUrls}
+            >
+              Scrape
+            </button>
+          </div>
+        </div>
+      </div>
 
-Inputs.propTypes = {
-  scrapePDF: PropTypes.func.isRequired,
-  clearOutput: PropTypes.func.isRequired,
+      {errorMsg && (
+        <div className="notification is-danger is-light">{errorMsg}</div>
+      )}
+    </NumberItem>
+  );
 };
 
 const InputURL = ({ value, setValue, placeholder, validValue }) => {
@@ -156,4 +149,4 @@ InputURL.propTypes = {
   validValue: PropTypes.bool.isRequired,
 };
 
-export default Inputs;
+export default StepTwo;

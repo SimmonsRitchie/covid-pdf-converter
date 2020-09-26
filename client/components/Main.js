@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import Inputs from "./Inputs";
+import StepTwo from "./StepTwo";
+import StepOne from "./StepOne";
 import Header from "./Header";
 import Output from "./Output";
 import Footer from "./Footer";
+import NumberItem from "./NumberItem";
 
 const Main = () => {
   const [output, setOutput] = useState(null);
@@ -48,9 +50,10 @@ const Main = () => {
     <div>
       <Header
         title="COVID PDF Converter"
-        subtitle="Convert PDFs from DoH to Text"
+        subtitle="Convert PDFs with Pennsylvania COVID-19 info into plain text."
       />
-      <Inputs scrapePDF={scrapePDF} clearOutput={clearOutput} />
+      <StepOne />
+      <StepTwo scrapePDF={scrapePDF} clearOutput={clearOutput} />
       <Output loading={loading} output={output} error={error} />
       <Footer text="Created by Daniel Simmons-Ritchie, Spotlight PA." />
     </div>

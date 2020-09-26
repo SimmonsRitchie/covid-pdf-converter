@@ -4,6 +4,7 @@ import OutputTable from "./OutputTable";
 import Loader from "./Loader";
 import Tabs from "./Tabs";
 import OutputText from "./OutputText";
+import Section from "./Section";
 
 const Output = ({ loading, output, error }) => {
   const tabSchema = [
@@ -30,26 +31,29 @@ const Output = ({ loading, output, error }) => {
   };
 
   return (
-    <section className="section">
-      <div className="columns">
-        <div className="column is-8 is-offset-2">
-          {loading && <Loader />}
-          {error && (
-            <div className="notification is-danger is-light">{error}</div>
-          )}
-          {output && (
-            <div>
-              <Tabs
-                tabSchema={tabSchema}
-                currentTab={currentTab}
-                handleTabClick={handleTabClick}
-              />
-              {displayEnum[currentTab]}
-            </div>
-          )}
+    <Section>
+      {loading && <Loader />}
+      {error && <div className="notification is-danger is-light">{error}</div>}
+      {output && (
+        <div>
+          <h3 className="title is-3 has-text-success has-text-centered	">
+            <span role="img" aria-label="party">
+              🎉
+            </span>{" "}
+            PDFs converted!{" "}
+            <span role="img" aria-label="party">
+              🎉
+            </span>
+          </h3>
+          <Tabs
+            tabSchema={tabSchema}
+            currentTab={currentTab}
+            handleTabClick={handleTabClick}
+          />
+          {displayEnum[currentTab]}
         </div>
-      </div>
-    </section>
+      )}
+    </Section>
   );
 };
 
