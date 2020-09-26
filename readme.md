@@ -78,10 +78,10 @@ For your initially deployment, run the following commands from inside your proje
 
 3) Now push your code to Heroku:
 
-```git push heroku master```
+```npm run deploy```
 
 ### Deploy to Heroku - Subsequent
 
-For subsequent deployments to Heroku, make sure you're on your master branch then run:
+For subsequent deployments to Heroku, make sure you're on your master branch then just run:
 
 ```npm run deploy```
