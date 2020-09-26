@@ -5,6 +5,7 @@ import "./styles/styles.scss";
 import React from "react";
 import ReactDOM from "react-dom";
 import Main from "./components/Main";
+import AppRouter from "./routers/AppRouter";
 
 // RENDERAPP
-ReactDOM.render(<Main />, document.getElementById("app"));
+ReactDOM.render(<AppRouter />, document.getElementById("app"));

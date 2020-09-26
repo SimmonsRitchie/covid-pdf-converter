@@ -4,7 +4,7 @@ import StepOne from "./StepOne";
 import Header from "./Header";
 import Output from "./Output";
 import Footer from "./Footer";
-import NumberItem from "./NumberItem";
+import { CREDIT_LINE, HELP_TEXT } from "../utils/constants";
 
 const Main = () => {
   const [output, setOutput] = useState(null);
@@ -48,14 +48,9 @@ const Main = () => {
 
   return (
     <div>
-      <Header
-        title="COVID PDF Converter"
-        subtitle="Convert PDFs with Pennsylvania COVID-19 info into plain text."
-      />
       <StepOne />
       <StepTwo scrapePDF={scrapePDF} clearOutput={clearOutput} />
       <Output loading={loading} output={output} error={error} />
-      <Footer text="Created by Daniel Simmons-Ritchie, Spotlight PA." />
     </div>
   );
 };

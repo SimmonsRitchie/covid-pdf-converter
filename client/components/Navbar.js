@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [burgerOpen, setBurgerOpen] = useState(false);
@@ -7,12 +8,12 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="container">
         <div className="navbar-brand">
-          <a className="navbar-item brand-text" href="../index.html">
+          <Link to="/" className="navbar-item brand-text" href="../index.html">
             <span className="icon">
               <i className="far fa-file-pdf" />
             </span>
             <span>CPC</span>
-          </a>
+          </Link>
           <div
             onClick={() => setBurgerOpen(!burgerOpen)}
             className={`navbar-burger burger ${activeClass}`}
@@ -26,12 +27,12 @@ const Navbar = () => {
         </div>
         <div id="navMenu" className={`navbar-menu ${activeClass}`}>
           <div className="navbar-start">
-            <a className="navbar-item" href="admin.html">
+            <Link to="/" className="navbar-item" href="admin.html">
               Home
-            </a>
-            <a className="navbar-item" href="admin.html">
+            </Link>
+            <Link to="/about" className="navbar-item" href="admin.html">
               About
-            </a>
+            </Link>
           </div>
         </div>
       </div>
