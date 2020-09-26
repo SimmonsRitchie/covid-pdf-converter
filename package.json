@@ -5,7 +5,7 @@
   "author": "Spotlight PA",
   "license": "MIT",
   "scripts": {
-    "test:py": "pytest",
+    "test:py": "venv/bin/pytest --capture=sys",
     "clean": "find dist -mindepth 1 -delete || mkdir dist",
     "build": "parcel build client/index.html --no-content-hash --experimental-scope-hoisting",
     "flask": "venv/bin/flask run --no-debugger",

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import NumberItem from "./NumberItem";
+import { SAMPLE_CASES_URL, SAMPLE_DEATHS_URL } from "../utils/constants";
 
 const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
 
@@ -33,12 +34,8 @@ const StepTwo = ({ scrapePDF, clearOutput }) => {
   };
 
   const setDemoData = () => {
-    setAndValidateCasesUrl(
-      "https://interactives.data.spotlightpa.org/assets/covid-pdf-converter/sample/sample__county-cases__2020-09-19.pdf"
-    );
-    setAndValidateDeathsUrl(
-      "https://interactives.data.spotlightpa.org/assets/covid-pdf-converter/sample/sample__county-deaths__2020-09-19.pdf"
-    );
+    setAndValidateCasesUrl(SAMPLE_CASES_URL);
+    setAndValidateDeathsUrl(SAMPLE_DEATHS_URL);
   };
 
   const submitUrls = () => {
@@ -80,7 +77,10 @@ const StepTwo = ({ scrapePDF, clearOutput }) => {
                 onClick={clearAllData}
                 className="button is-small is-primary"
               >
-                Clear
+                <span>Clear</span>
+                <span className="icon is-small">
+                  <i className="fas fa-times" />
+                </span>
               </button>
             </div>
           </div>

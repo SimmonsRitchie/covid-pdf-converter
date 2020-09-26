@@ -16,8 +16,8 @@ const OutputText = ({ firstRow, restOfRows }) => {
 
   return (
     <div>
-      <button type="button" className="button" onClick={test}>
-        Copy all
+      <button type="button" className="button is-small" onClick={test}>
+        COPY ALL
       </button>
       <div style={{ width: "100%", overflow: "auto" }}>
         <pre>

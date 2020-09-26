@@ -69,7 +69,9 @@ const Row = ({ colNames, rowData }) => {
 
 Row.propTypes = {
   colNames: PropTypes.arrayOf(PropTypes.string).isRequired,
-  rowData: PropTypes.arrayOf(PropTypes.number).isRequired,
+  rowData: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  ).isRequired,
 };
 
 export default OutputTable;
