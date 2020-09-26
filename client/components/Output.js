@@ -5,12 +5,9 @@ import Loader from "./Loader";
 import Tabs from "./Tabs";
 import OutputText from "./OutputText";
 import Section from "./Section";
+import { TAB_SCHEMA } from "../utils/constants";
 
 const Output = ({ loading, output, error }) => {
-  const tabSchema = [
-    { id: "table", label: "Table" },
-    { id: "text", label: "Text" },
-  ];
   const [currentTab, setCurrentTab] = useState("text");
   const handleTabClick = (val) => {
     setCurrentTab(val);
@@ -46,7 +43,7 @@ const Output = ({ loading, output, error }) => {
             </span>
           </h3>
           <Tabs
-            tabSchema={tabSchema}
+            tabSchema={TAB_SCHEMA}
             currentTab={currentTab}
             handleTabClick={handleTabClick}
           />

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 
 const Navbar = () => {
   const [burgerOpen, setBurgerOpen] = useState(false);
@@ -9,12 +8,16 @@ const Navbar = () => {
       <div className="container">
         <div className="navbar-brand">
           <a className="navbar-item brand-text" href="../index.html">
-            CPC
+            <span className="icon">
+              <i className="far fa-file-pdf" />
+            </span>
+            <span>CPC</span>
           </a>
           <div
             onClick={() => setBurgerOpen(!burgerOpen)}
             className={`navbar-burger burger ${activeClass}`}
             data-target="navMenu"
+            role="button"
           >
             <span />
             <span />

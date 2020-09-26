@@ -58,8 +58,7 @@ const StepTwo = ({ scrapePDF, clearOutput }) => {
   };
 
   return (
-    <NumberItem number={2}>
-      <div className="content">Enter URLs</div>
+    <NumberItem number={2} instructions="Enter URLs">
       <div className="level is-mobile">
         <div className="level-left" />
         <div className="level-right">
@@ -68,14 +67,17 @@ const StepTwo = ({ scrapePDF, clearOutput }) => {
               <button
                 type="button"
                 onClick={setDemoData}
-                className="button is-small is-danger"
+                className="button is-small is-primary"
               >
-                Demo
+                <span>Demo</span>
+                <span className="icon is-small">
+                  <i className="fas fa-play-circle" />
+                </span>
               </button>
               <button
                 type="button"
                 onClick={clearAllData}
-                className="button is-small is-primary"
+                className="button is-small is-danger"
               >
                 <span>Clear</span>
                 <span className="icon is-small">

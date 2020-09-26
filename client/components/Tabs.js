@@ -8,13 +8,14 @@ const Tabs = ({ tabSchema, currentTab, handleTabClick }) => {
     <div className="tabs is-centered is-boxed">
       <ul>
         {tabSchema.map((tabInfo) => {
-          const { label, id } = tabInfo;
+          const { label, id, faIcon } = tabInfo;
           const active = currentTab === id;
           return (
             <Tab
               handleTabClick={handleTabClick}
               id={id}
               key={id}
+              faIcon={faIcon}
               label={label}
               active={active}
             />
@@ -31,13 +32,13 @@ Tabs.propTypes = {
   handleTabClick: PropTypes.func.isRequired,
 };
 
-const Tab = ({ active = false, label, handleTabClick, id }) => {
+const Tab = ({ active = false, label, handleTabClick, id, faIcon }) => {
   const activeClass = active ? "is-active" : "";
   return (
     <li className={`${activeClass}`} onClick={() => handleTabClick(id)}>
       <a>
         <span className="icon is-small">
-          <i className="fas fa-image" aria-hidden="true" />
+          <i className={faIcon} aria-hidden="true" />
         </span>
         <span>{label}</span>
       </a>
@@ -48,6 +49,7 @@ const Tab = ({ active = false, label, handleTabClick, id }) => {
 Tab.defaultProps = {
   active: false,
   label: "",
+  faIcon: "fas grimace",
 };
 
 Tab.propTypes = {
@@ -55,6 +57,7 @@ Tab.propTypes = {
   label: PropTypes.string,
   handleTabClick: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
+  faIcon: PropTypes.string,
 };
 
 export default Tabs;
