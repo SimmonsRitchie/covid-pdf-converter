@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Inputs from "./Inputs";
 import Header from "./Header";
 import Output from "./Output";
+import Footer from "./Footer";
 
 const Main = () => {
   const [output, setOutput] = useState(null);
@@ -51,6 +52,7 @@ const Main = () => {
       />
       <Inputs scrapePDF={scrapePDF} clearOutput={clearOutput} />
       <Output loading={loading} output={output} error={error} />
+      <Footer text="Created by Daniel Simmons-Ritchie, Spotlight PA." />
     </div>
   );
 };
