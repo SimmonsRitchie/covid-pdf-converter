@@ -9,7 +9,7 @@ from io import BytesIO
 DIR_OUTPUT = "./output"
 
 
-def get_data(url, multiple_tables=False, tabula_options=""):
+def get_data(url, multiple_tables=False, tabula_options="", pandas_options=None):
     print(f"Downloading PDF at: {url}")
     response = requests.get(url)
     print("PDF downloaded")
@@ -19,6 +19,7 @@ def get_data(url, multiple_tables=False, tabula_options=""):
         pages="all",
         multiple_tables=multiple_tables,
         options=tabula_options,
+        pandas_options=pandas_options,
     )
     print("PDF converted")
     return list_of_dfs
@@ -27,11 +28,34 @@ def get_data(url, multiple_tables=False, tabula_options=""):
 def scrape_pdfs(cases_url, deaths_url):
 
     # cases
-    df_cases = get_data(cases_url)[0]
+    df_cases = get_data(
+        cases_url,
+        pandas_options={
+            "dtype": {
+                "County": str,
+                "Region": str,
+                "Cases": int,
+                "Confirmed": int,
+                "Probable": int,
+                "PersonsWithNegativePCR": int,
+            },
+            "thousands": ",",
+        },
+    )[0]
     df_cases["County"] = df_cases["County"].str.lower()
+    print(df_cases)
 
     # deaths
-    df_deaths = get_data(deaths_url, multiple_tables=False, tabula_options="-t")[0]
+    df_deaths = get_data(
+        deaths_url,
+        multiple_tables=False,
+        tabula_options="-t",
+        pandas_options={
+            "dtype": {"# of Deaths": int, "County Population1": int, "Rate2": float},
+            "thousands": ",",
+            "decimal": ".",
+        },
+    )[0]
     df_deaths["County"] = df_deaths["County"].str.lower()
     df_deaths = df_deaths.rename(
         columns={
@@ -41,10 +65,6 @@ def scrape_pdfs(cases_url, deaths_url):
         }
     )
     print(df_deaths)
-    df_deaths["Deaths"] = df_deaths["Deaths"].str.replace(",", "")
-    df_deaths["Deaths"] = pd.to_numeric(df_deaths["Deaths"])
-    df_deaths["County Population"] = df_deaths["County Population"].str.replace(",", "")
-    df_deaths["County Population"] = pd.to_numeric(df_deaths["County Population"])
 
     # merge and clean
     df = df_cases.merge(df_deaths, how="left", on="County")
