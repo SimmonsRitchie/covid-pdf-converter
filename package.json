@@ -2,7 +2,7 @@
   "name": "covid-pdf-converter",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Spotlight PA",
+  "author": "Daniel Simmons-Ritchie, Spotlight PA",
   "license": "MIT",
   "scripts": {
     "test:py": "venv/bin/pytest --capture=sys",
