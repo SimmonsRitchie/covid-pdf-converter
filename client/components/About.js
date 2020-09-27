@@ -44,8 +44,18 @@ const About = () => {
           text using tabula-py – a thin wrapper for tabula-java – and parsed
           using Pandas.
         </p>
-        <p>The frontend was built with React using Bulma CSS framework</p>
-        <p>View the source code here.</p>
+        <p>The frontend was built with React using the Bulma CSS framework.</p>
+        <p>
+          View the source code{" "}
+          <a
+            href="https://github.com/SimmonsRitchie/covid-pdf-converter"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            here
+          </a>
+          .
+        </p>
       </div>
     </Section>
   );
