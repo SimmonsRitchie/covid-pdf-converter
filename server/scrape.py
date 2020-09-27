@@ -51,7 +51,18 @@ def scrape_pdfs(cases_url, deaths_url):
         multiple_tables=False,
         tabula_options="-t",
         pandas_options={
-            "dtype": {"# of Deaths": int, "County Population1": int, "Rate2": float},
+            "dtype": {
+                "# of Deaths": float,
+                "County Population1": float,
+                "Rate2": float,
+            },
+            # Handle situations where header is duplicated
+            "na_values": {
+                "County": "County",
+                "# of Deaths": "# of Deaths",
+                "County Population1": "County Population1",
+                "Rate2": "Rate2",
+            },
             "thousands": ",",
             "decimal": ".",
         },
