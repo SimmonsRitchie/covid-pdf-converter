@@ -64,7 +64,7 @@ For your initially deployment, run the following commands from inside your proje
 
 2) Create a new Heroku project with a unique name. Upon execution, Heroku will add the location of this project to git as a new remote repo.
 
-```heroku create dsr-flask-react-app```
+```heroku create your-unique-project-name```
 
 3) This app uses tabula-py, which requires Java to be installed in your Heroku environment. Run:
 
