@@ -40,7 +40,7 @@ const StepTwo = ({ scrapePDF, clearOutput }) => {
 
   const submitUrls = () => {
     if (!casesValid || !deathsValid) {
-      setErrorMsg("Please enter valid URLS");
+      setErrorMsg("Please enter valid URLs");
     } else if (casesURL === deathsURL) {
       setErrorMsg(
         "Cases and deaths URLs are the same. Did you accidentally copy the same URL twice?"
