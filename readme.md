@@ -1,21 +1,11 @@
-### Flask-React Boilerplate App
-A dead simple Flask-React app that's easy to deploy to Heroku. Clone this repo and modify it for your own use.
+### PDF Covid Converter
 
-I built this boilerplate because I could find only limited advice on the web on creating a Flask app with a React frontend that could be deployed to Heroku.
-
-The project includes ESLint and the Bulma CSS framework. [Parcel.js](https://github.com/parcel-bundler/parcel) is used to bundle the JS.
-
-View [live project on Heroku](https://dsr-flask-react-app.herokuapp.com/).
-
-Inspired by:
-- Miguel Grinberg's ['How to Create a React + Flask Project'](https://blog.miguelgrinberg.com/post/how-to-create-a-react--flask-project) and ['How to Deploy a React + Flask Project'](https://blog.miguelgrinberg.com/post/how-to-deploy-a-react--flask-project) tutorials.
-- Anindita Basu's [flask-heroku-start-pack](https://github.com/AninditaBasu/flask-heroku-starter-pack) and [tutorial](https://dev.to/aninditabasu/how-to-move-your-flask-app-from-the-local-machine-to-the-heroku-cloud-egk).
-- Ayushman Kumar's ['Deploy Python Flask App on Heroku'](https://www.geeksforgeeks.org/deploy-python-flask-app-on-heroku/) tutorial
-
+A web app that downloads and converts PDFs with COVID-19 data from the Pa. Dept of Health into plain text.
 
 ### Requirements
 - Python v3.8+
 - Node v6+
+- Java
 
 ### Install
 To install, clone this repo and cd into the root of the project.
@@ -62,7 +52,7 @@ You should be able to view the project at localhost:1234
 
 Note: Keep in mind you will not be able to interact with the server unless you also spin up your Flask app. However, it can sometimes be preferable to develop using Parcel's dev server, rather than Flask's, because Parcel includes hot reloading by default. 
 
-### Deploy to Heroku - Initial
+### Deploy to Heroku
 
 These instructions assume you have a Heroku account and that you've initialized this project as a new repo.
 
@@ -76,7 +66,11 @@ For your initially deployment, run the following commands from inside your proje
 
 ```heroku create dsr-flask-react-app```
 
-3) Now push your code to Heroku:
+3) This app uses tabula-py, which requires Java to be installed in your Heroku environment. Run:
+
+```heroku buildpacks:add heroku/jvm```
+
+4) Now push your code to Heroku:
 
 ```npm run deploy```
 

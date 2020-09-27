@@ -11,7 +11,7 @@
     "flask": "venv/bin/flask run --no-debugger",
     "flask:dev": "npm run start & export BUILD_DIR=.tmp && npm run flask",
     "flask:prod": "npm run clean && npm run build && npm run flask",
-    "deploy": "npm run clean && npm run build && git add ./dist && git commit -m 'Build frontend'; git push heroku master",
+    "deploy": "npm run clean && npm run build && git add ./dist && git commit -m 'Build frontend' --allow-empty && git push heroku master",
     "start": "parcel client/index.html -d .tmp"
   },
   "dependencies": {
