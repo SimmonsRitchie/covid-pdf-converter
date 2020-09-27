@@ -2,6 +2,8 @@
 
 A web app that downloads and converts PDFs with COVID-19 data from the Pa. Dept of Health into plain text.
 
+Demo here: [covid-pdf-converter.herokuapp.com](https://covid-pdf-converter.herokuapp.com/)
+
 ### Requirements
 - Python v3.8+
 - Node v6+
