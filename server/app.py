@@ -7,6 +7,7 @@ from .scrape import scrape_pdfs
 build_dir = os.getenv("BUILD_DIR", "dist")
 print("Build dir:", build_dir)
 app = Flask(__name__, static_folder=f"../{build_dir}", static_url_path="/")
+app.config["JSON_SORT_KEYS"] = False
 
 
 @app.route("/")
