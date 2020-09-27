@@ -27,6 +27,13 @@ export const HELP_TEXT = (
     <a href="mailto:dsimmons.ritchie@spotlightpa.org">
       dsimmons-ritchie@spotlightpa.org
     </a>
-    .
+    . View the
+    <a
+      href="https://github.com/SimmonsRitchie/covid-pdf-converter"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      source code
+    </a>
   </React.Fragment>
 );
