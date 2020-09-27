@@ -2,7 +2,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import Header from "../components/Header";
-import { CREDIT_LINE, HELP_TEXT } from "../utils/constants";
+import { FOOTER_CREDIT, FOOTER_HELP, FOOTER_SOURCE } from "../utils/constants";
 import Footer from "../components/Footer";
 
 const PublicRoute = ({ component: Component, ...routeProps }) => {
@@ -14,7 +14,11 @@ const PublicRoute = ({ component: Component, ...routeProps }) => {
           subtitle="Convert PDFs with Pennsylvania COVID-19 info into plain text."
         />
         <Component />
-        <Footer creditText={CREDIT_LINE} helpText={HELP_TEXT} />
+        <Footer
+          creditText={FOOTER_CREDIT}
+          helpText={FOOTER_HELP}
+          sourceLink={FOOTER_SOURCE}
+        />
       </div>
     </Route>
   );

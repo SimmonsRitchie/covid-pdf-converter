@@ -8,7 +8,7 @@ export const TAB_SCHEMA = [
   { id: "table", label: "Table", faIcon: "fas fa-table" },
   { id: "text", label: "Text", faIcon: "fas fa-align-justify" },
 ];
-export const CREDIT_LINE = (
+export const FOOTER_CREDIT = (
   <React.Fragment>
     Created by Daniel Simmons-Ritchie,{" "}
     <a
@@ -21,19 +21,14 @@ export const CREDIT_LINE = (
     .
   </React.Fragment>
 );
-export const HELP_TEXT = (
+export const FOOTER_HELP = (
   <React.Fragment>
     Problems? Email{" "}
     <a href="mailto:dsimmons.ritchie@spotlightpa.org">
       dsimmons-ritchie@spotlightpa.org
     </a>
-    . View the
-    <a
-      href="https://github.com/SimmonsRitchie/covid-pdf-converter"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      source code
-    </a>
   </React.Fragment>
 );
+
+export const FOOTER_SOURCE =
+  "https://github.com/SimmonsRitchie/covid-pdf-converter";
