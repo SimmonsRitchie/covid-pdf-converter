@@ -14,7 +14,10 @@ const Footer = ({ creditText, helpText, sourceLink }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Source
+            <span>Source Code</span>
+            <span className="icon">
+              <i className="fab fa-github" />
+            </span>
           </a>
         )}
       </div>
