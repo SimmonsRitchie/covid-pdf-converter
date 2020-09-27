@@ -5,35 +5,45 @@ const Navbar = () => {
   const [burgerOpen, setBurgerOpen] = useState(false);
   const activeClass = burgerOpen ? "is-active" : "";
   return (
-    <nav className="navbar">
+    <nav
+      className="navbar is-transparent"
+      role="navigation"
+      aria-label="main navigation"
+    >
       <div className="container">
         <div className="navbar-brand">
-          <Link to="/" className="navbar-item brand-text" href="../index.html">
+          <Link to="/" className="navbar-item">
             <span className="icon">
               <i className="far fa-file-pdf" />
             </span>
             <span>CPC</span>
           </Link>
-          <div
+          <a
             onClick={() => setBurgerOpen(!burgerOpen)}
             className={`navbar-burger burger ${activeClass}`}
             data-target="navMenu"
             role="button"
           >
-            <span />
-            <span />
-            <span />
-          </div>
+            <span aria-hidden="true" />
+            <span aria-hidden="true" />
+            <span aria-hidden="true" />
+          </a>
         </div>
         <div id="navMenu" className={`navbar-menu ${activeClass}`}>
           <div className="navbar-start">
-            <NavLink to="/" className="navbar-item" activeClassName="is-active">
+            <NavLink
+              exact
+              to="/"
+              className="navbar-item"
+              activeClassName="is-active"
+            >
               Home
             </NavLink>
             <NavLink
+              exact
               to="/about"
               className="navbar-item"
-              activeClassName="active"
+              activeClassName="is-active"
             >
               About
             </NavLink>
