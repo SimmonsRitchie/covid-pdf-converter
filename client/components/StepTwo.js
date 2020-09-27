@@ -58,7 +58,14 @@ const StepTwo = ({ scrapePDF, clearOutput }) => {
   };
 
   return (
-    <NumberItem number={2} instructions="Enter URLs">
+    <NumberItem
+      number={2}
+      instructions={
+        <p>
+          Enter URLs and click <strong>Scrape</strong>.
+        </p>
+      }
+    >
       <div className="level is-mobile">
         <div className="level-left" />
         <div className="level-right">

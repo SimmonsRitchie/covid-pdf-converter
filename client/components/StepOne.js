@@ -7,12 +7,21 @@ const DOH_URL =
 const StepOne = () => {
   const hi = (
     <React.Fragment>
-      Go to{" "}
-      <a href={DOH_URL} target="_blank" rel="noreferrer">
-        this page
-      </a>{" "}
-      at the Pa. Department of Health and copy the URLs for &apos;County case
-      counts by date&apos; and &apos;Death by county of residence&apos; pages.
+      <p>
+        Click{" "}
+        <a href={DOH_URL} target="_blank" rel="noreferrer">
+          here
+        </a>{" "}
+        and copy the URLs to the following pages:
+      </p>
+      <ul>
+        <li>County case counts by date</li>
+        <li>Death by county of residence</li>
+      </ul>
+      <p>
+        If you just want to see how this works, skip this step and click "demo"
+        below.
+      </p>
     </React.Fragment>
   );
 

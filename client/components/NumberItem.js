@@ -10,9 +10,7 @@ const NumberItem = ({ number, instructions, children }) => {
           <h1 className="title">{number}</h1>
         </figure>
         <div className="media-content">
-          <div className="content">
-            <p className="is-size-5">{instructions}</p>
-          </div>
+          <div className="content is-size-5">{instructions}</div>
           {children}
         </div>
       </article>
